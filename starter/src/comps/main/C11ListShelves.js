@@ -1,7 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-//import { useState } from "react";
-//import { Link } from "react-router-dom";
 import shelfTypes from "../Constants";
 import ShelveFill from "./C111FillShelve";
 

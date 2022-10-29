@@ -3,10 +3,7 @@ import PropTypes from "prop-types";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import BookShow from "../book/C3BookShow";
-//import searchBooks from "../../utils/SearchBooksDB";  //!!!!! Change to API
-import * as BooksAPI from "../../utils/BooksAPI";
-
-
+import * as BooksAPI from "../../BooksAPI";
 
 const BooksSearch = ({ onBookMoved }) => {
 
@@ -14,19 +11,14 @@ const BooksSearch = ({ onBookMoved }) => {
 	const [searchedBooks, setSearchedBooks] = useState([]);
 
 	const handleBookMoveInSearch = (book, newShelf) => {
-		//book.shelf = newShelf;
-		/////////// Update API
 		onBookMoved(book, newShelf);
-		//const searchedBooks1 = searchBooks.books.map((book)=>book);
-		//setSearchedBooks(searchedBooks1);
     }
 
     const UpdateQuery = (query) => {
-        setQuery(query.trim());
+        setQuery(query);
 		const GetSearchBooks = async () => {
 			if (query !== "") {
 				await BooksAPI.search(query, 20).then((respSearch)=>{
-					console.log(respSearch);
 					if (respSearch && !respSearch.error) {
 						setSearchedBooks(respSearch);
 					}
@@ -37,7 +29,6 @@ const BooksSearch = ({ onBookMoved }) => {
 			else
 				setSearchedBooks([]);
 		};
-		//Call the async function
 		GetSearchBooks();
 	}
 
@@ -60,10 +51,10 @@ const BooksSearch = ({ onBookMoved }) => {
 					(query !== "") && (Array.isArray(searchedBooks)) &&
 					searchedBooks.map(book => (
                 	<li key={book.id}>
-                  	<BookShow
-                    	Book={book}
-                    	onBookMoved={handleBookMoveInSearch}
-                  	/>
+						<BookShow
+							Book={book}
+							onBookMoved={handleBookMoveInSearch}
+						/>
                 	</li>
               		))
             	}

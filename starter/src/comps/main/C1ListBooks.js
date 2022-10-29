@@ -1,7 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-//import { useState } from "react";
-//import { Link } from "react-router-dom";
 import ShelvesList from "./C11ListShelves";
 import BookAdd from "./C12AddBook";
 
